@@ -1,21 +1,17 @@
-function employee (nameS)
-{
-    this.name=nameS;
+function Employee (name) {
+    this.name = name;
     
-}
-//employee.prototype.getname=function()
-//
- //   return this.name;
-//}
-function manager(salaryS){
-   
-    this.salary=salaryS;
-    
-}
+                          }
 
-var emp=new employee("Samarth");
+function Manager(salary) {
+   
+    this.salary = salary;
+    
+                          }
+
+var emp=new Employee("Samarth");
 manager.prototype=emp;
 
-var m=new manager(1000);
+var m=new Manager(1000);
 
 console.log(m.name);
