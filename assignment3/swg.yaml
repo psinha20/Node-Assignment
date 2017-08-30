@@ -1,0 +1,393 @@
+swagger: "2.0"
+info:
+  version: 1.0.0
+  title: Star API
+  description: A simple API to learn how to write OpenAPI Specification
+
+schemes:
+  - https
+host: swapi.co
+basePath: /api
+paths:
+  /starships:
+    get:
+      description: List of starships in star wars
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Starships"
+  /starships/{starship_id}:
+    get:
+      parameters:
+      - in: path
+        name: starship_id
+        description: get a specific starship resource
+        required: true
+        type: integer
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Starships"
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "Starship not found"
+  /starships/schema:
+    get:
+      description: view the JSON schema for Starship
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/starshipSchema"
+  /vehicles:
+    get:
+      description: Vehicles in star wars
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/vehicles"    
+  /vehicles/{vehicle_id}:
+    get:
+      parameters:
+      - in: path
+        name: film_id
+        required: true
+        type: integer
+        description: get a specific vehicle resource
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/vehicles"
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "Vehicle not found"
+  /vehicles/schema:
+    get:
+      description: view the JSON schema for Vehicles
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/vehicleschema"  
+definitions:
+  Starships:
+    "required": [
+        "name",
+        "model",
+        "manufacturer",
+        "cost_in_credits",
+        "length",
+        "max_atmosphering_speed",
+        "crew",
+        "passengers",
+        "cargo_capacity",
+        "consumables",
+        "hyperdrive_rating",
+        "MGLT",
+        "starship_class",
+        "pilots",
+        "films",
+        "created",
+        "edited",
+        "url"
+    ],
+    "properties": {
+        "MGLT": {
+            "description": "The Maximum number of Megalights this starship can travel in a standard hour. A Megalight is a standard unit of distance and has never been defined before within the Star Wars universe. This figure is only really useful for measuring the difference in speed of starships. We can assume it is similar to AU, the distance between our Sun (Sol) and Earth.",
+            "type": "string"
+        },
+        "passengers": {
+            "description": "The number of non-essential people this starship can transport.",
+            "type": "string"
+        },
+        "films": {
+            "description": "An array of Film URL Resources that this starship has appeared in.",
+            "type": "array"
+        },
+        "crew": {
+            "description": "The number of personnel needed to run or pilot this starship.",
+            "type": "string"
+        },
+        "name": {
+            "description": "The name of this starship. The common name, such as Death Star.",
+            "type": "string"
+        },
+        "length": {
+            "description": "The length of this starship in meters.",
+            "type": "string"
+        },
+        "model": {
+            "description": "The model or official name of this starship. Such as T-65 X-wing or DS-1 Orbital Battle Station.",
+            "type": "string"
+        },
+        "consumables": {
+            "description": "The maximum length of time that this starship can provide consumables for its entire crew without having to resupply.",
+            "type": "string"
+        },
+        "cargo_capacity": {
+            "description": "The maximum number of kilograms that this starship can transport.",
+            "type": "string"
+        },
+        "created": {
+            "format": "date-time",
+            "type": "string",
+            "description": "The ISO 8601 date format of the time that this resource was created."
+        },
+        "max_atmosphering_speed": {
+            "description": "The maximum speed of this starship in atmosphere. n/a if this starship is incapable of atmosphering flight.",
+            "type": "string"
+        },
+        "hyperdrive_rating": {
+            "description": "The class of this starships hyperdrive.",
+            "type": "string"
+        },
+        "cost_in_credits": {
+            "description": "The cost of this starship new, in galactic credits.",
+            "type": "string"
+        },
+        "url": {
+            "format": "uri",
+            "type": "string",
+            "description": "The hypermedia URL of this resource."
+        },
+        "starship_class": {
+            "description": "The class of this starship, such as Starfighter or Deep Space Mobile Battlestation.",
+            "type": "string"
+        },
+        "edited": {
+            "format": "date-time",
+            "type": "string",
+            "description": "the ISO 8601 date format of the time that this resource was edited."
+        },
+        "manufacturer": {
+            "description": "The manufacturer of this starship. Comma seperated if more than one.",
+            "type": "string"
+        },
+        "pilots": {
+            "description": "An array of People URL Resources that this starship has been piloted by.",
+            "type": "array"
+        }
+    },
+    "description": "A Starship",
+    "title": "Starship",
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "type": "object"
+    StarshipsSchema:
+    type: object
+    properties: {
+        name: {
+            type: "string",
+        },
+        model: {
+            type: "string",
+        },
+        starship_class: {
+            type: "string",
+        },
+        manufacturer: {
+            type: "string",
+        },
+        cost_in_credits: {
+            type: "string",
+        },
+        length: {
+            type: "string",
+        },
+        crew: {
+            type: "string",
+        },
+        passengers: {
+            type: "string",
+        },
+        max_atmosphering_speed: {
+            type: "string",
+            
+        },
+        hyperdrive_rating: {
+            type: "string",
+        },
+        MGLT: {
+            type: "string",
+        },
+        cargo_capacity: {
+            type: "string",
+            
+        },
+        consumables: {
+            type: "string"
+        },
+        films: {
+            type: "array"
+        },
+        pilots: {
+            type: "array"
+        },
+        url: {
+            type: "string",
+            format: "uri"
+        }
+	created: {
+            type: "string",
+            format: "date-time"
+        }
+	edited: {
+            type: "string",
+            format: "date-time"
+        }
+    }
+  vehicles:
+    "required": [
+        "name",
+        "model",
+        "manufacturer",
+        "cost_in_credits",
+        "length",
+        "max_atmosphering_speed",
+        "crew",
+        "passengers",
+        "cargo_capacity",
+        "consumables",
+        "vehicle_class",
+        "pilots",
+        "films",
+        "created",
+        "edited",
+        "url"
+    ],
+    "properties": {
+        "passengers": {
+            "description": "The number of non-essential people this vehicle can transport.",
+            "type": "string"
+        },
+        "vehicle_class": {
+            "description": "The class of this vehicle, such as Wheeled.",
+            "type": "string"
+        },
+        "crew": {
+            "description": "The number of personnel needed to run or pilot this vehicle.",
+            "type": "string"
+        },
+        "name": {
+            "description": "The name of this vehicle. The common name, such as Sand Crawler.",
+            "type": "string"
+        },
+        "length": {
+            "description": "The length of this vehicle in meters.",
+            "type": "string"
+        },
+        "model": {
+            "description": "The model or official name of this vehicle. Such as All Terrain Attack Transport.",
+            "type": "string"
+        },
+        "consumables": {
+            "description": "The maximum length of time that this vehicle can provide consumables for its entire crew without having to resupply.",
+            "type": "string"
+        },
+        "created": {
+            "format": "date-time",
+            "type": "string",
+            "description": "The ISO 8601 date format of the time that this resource was created."
+        },
+        "max_atmosphering_speed": {
+            "description": "The maximum speed of this vehicle in atmosphere.",
+            "type": "string"
+        },
+        "edited": {
+            "format": "date-time",
+            "type": "string",
+            "description": "the ISO 8601 date format of the time that this resource was edited."
+        },
+        "cost_in_credits": {
+            "description": "The cost of this vehicle new, in galactic credits.",
+            "type": "string"
+        },
+        "url": {
+            "format": "uri",
+            "type": "string",
+            "description": "The hypermedia URL of this resource."
+        },
+        "films": {
+            "description": "An array of Film URL Resources that this vehicle has appeared in.",
+            "type": "array"
+        },
+        "cargo_capacity": {
+            "description": "The maximum number of kilograms that this vehicle can transport.",
+            "type": "string"
+        },
+        "manufacturer": {
+            "description": "The manufacturer of this vehicle. Comma seperated if more than one.",
+            "type": "string"
+        },
+        "pilots": {
+            "description": "An array of People URL Resources that this vehicle has been piloted by.",
+            "type": "array"
+        }
+    },
+    "description": "A vehicle.",
+    "title": "Starship",
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "type": "object"
+  vehicleschema:
+    type: object
+     properties: {
+        name: {
+            type: "string",
+        },
+        model: {
+            type: "string",
+        },
+        vehicle_class: {
+            type: "string",
+        },
+        manufacturer: {
+            type: "string",
+        },
+        length: {
+            type: "string",
+        },
+        cost_in_credits: {
+            type: "string",
+        },
+        crew: {
+            type: "string",
+        },
+        passengers: {
+            type: "string",
+        },
+        max_atmosphering_speed: {
+            type: "string",
+            
+        },
+        cargo_capacity: {
+            type: "string",
+        },
+        consumables: {
+            type: "string",
+        },
+        films: {
+            type: "array",
+            
+        },
+        pilots: {
+            type: "array"
+        },
+        
+        url: {
+            type: "string",
+            format: "uri"
+        }
+	created: {
+            type: "string",
+            format: "date-time"
+        }
+	edited: {
+            type: "string",
+            format: "date-time"
+        }
+    }
