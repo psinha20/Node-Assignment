@@ -10,10 +10,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(upload.array());
 
-//Require the Router we defined in movies.js
+
 var clients = require('./clients.js');
 
-//Use the Router on the sub route /movies
+
 app.use('/clients', clients);
 
 app.listen(8000);
