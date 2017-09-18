@@ -9,11 +9,10 @@ http.createServer(function(req, res) {
     res.writeHead(200, {
         'Content-Type': 'text/html'
     });
+    
     frequencyReturned = dtFrequency.calculateFrequency('dummy');
 
-
-
-    flattenReturned = dtFlatten.flatten({
+	flattenReturned = dtFlatten.flatten({
         "flatJSON": false,
         "i": {
             "am": {
@@ -33,11 +32,9 @@ http.createServer(function(req, res) {
         }]
     });
 
+	secondLargestReturned = dtSecondLargest.secondLargest([3, 56, 7, 32, 9, 14]);
 
-    secondLargestReturned = dtSecondLargest.secondLargest([3, 56, 7, 32, 9, 14]);
-
-
-    unflattenReturned = dtUnflatten.unflatten({
+	unflattenReturned = dtUnflatten.unflatten({
         "flatJSON": false,
         "i.am.not.so.flat": true,
         "i.am.not.so.unflat": false,
@@ -46,6 +43,5 @@ http.createServer(function(req, res) {
         "dates.1.day": 8947
     });
 
-
-    res.end();
+	res.end();
 }).listen(8080);

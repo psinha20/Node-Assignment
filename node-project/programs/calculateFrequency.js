@@ -4,10 +4,10 @@ exports.calculateFrequency = function(string) {
     for (loop = 0; loop < string.length; loop++) {
         var stringIterator = string.charAt(loop);
         if (stringIterator.match(".*[a-z].*")) {
-            if (frequency[string.charAt(loop)]) {
-                frequency[string.charAt(loop)]++;
+            if (frequency[stringIterator]) {
+                frequency[stringIterator]++;
             } else {
-                frequency[string.charAt(loop)] = 1;
+                frequency[stringIterator] = 1;
             }
         }
     }
