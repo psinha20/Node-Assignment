@@ -1,0 +1,10 @@
+var express = require('express');
+var bodyParser = require('body-parser');
+var app = express();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+var employees = require('./controller/employees.js');
+var projects = require('./controller/projects.js');
+app.use('/employees', employees);
+app.use('/projects', projects);
+app.listen(8000);
