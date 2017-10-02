@@ -1,0 +1,91 @@
+swagger: "2.0"
+info:
+  description: "This is the backend of a tic tac toe game.The game can be single-player or 2 player.A second player can join anytime and make a single player gamse as 2 player"
+  version: "1.0.0"
+  title: "Tic Tac toe"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "apiteam@swagger.io"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "tictactoe.swagger.io"
+basePath: "/v2"
+tags:
+- name: "players"
+  description: "Everything about tic tac toe for players"
+  externalDocs:
+    description: "Find out more"
+    url: "http://swagger.io"
+- name: "players apis"
+  description: "Access to Tic Tac Toe backend for players"
+  externalDocs:
+    description: "Find out more about our game"
+    url: "http://swagger.io"
+schemes:
+- "http"
+paths:
+  /players:
+    post:
+      tags:
+      - "players"
+      summary: "Add a new player"
+      description: "Add a new player"
+      operationId: "addPlayer"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Player object that needs to be added"
+        required: true
+        schema:
+          $ref: "#/definitions/Players"
+      responses:
+        405:
+          description: "Invalid input"
+      security:
+      - players_auth: []
+/players/{playerId}:
+    get:
+      tags:
+      - "players"
+      summary: "Find player stats by ID"
+      description: "Returns player name,nickname,matches played,matches won"
+      operationId: "getPlayerStatsById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "playerId"
+        in: "path"
+        description: "ID of player to return"
+        required: true
+        type: "objectId"
+        format: "24 character objectId"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Player"
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "Player not found"
+      security:
+      - api_key: []
+
+ Player:
+    type: "object"
+    properties:
+      id:
+        type: "objectId"
+        format: "24 character objectId"
+      name:
+        type: "string"
+      nickname:
+        type: "string"
+      age:
+        type: "number"
+      
